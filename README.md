@@ -1,1 +1,1 @@
-# Smartslame-pdris-homeworks-2020
+# pdris-homeworks-2020
