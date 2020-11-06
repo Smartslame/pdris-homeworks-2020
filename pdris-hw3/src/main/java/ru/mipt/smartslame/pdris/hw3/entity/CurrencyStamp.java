@@ -1,34 +1,35 @@
-package test;
+package ru.mipt.smartslame.pdris.hw3.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import ru.mipt.smartslame.pdris.hw3.jackson.custom.DateDeserializer;
+import ru.mipt.smartslame.pdris.hw3.jackson.custom.DoubleDeserializer;
 
-import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 @JacksonXmlRootElement(localName = "Record")
-public class Currency implements Serializable {
+public class CurrencyStamp {
     @JacksonXmlProperty(localName = "Id", isAttribute = true)
-    private String currencyId;
+    private String id;
     @JacksonXmlProperty(localName = "Date", isAttribute = true)
     @JsonDeserialize(using = DateDeserializer.class)
-    private Date date;
+    private LocalDate date;
     @JacksonXmlProperty(localName = "Value")
     @JsonDeserialize(using = DoubleDeserializer.class)
     private double cost;
 
-    public String getCurrencyId() {
-        return currencyId;
+    @JsonIgnore
+    public String getId() {
+        return id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
     public double getCost() {
         return cost;
     }
-
-
 }

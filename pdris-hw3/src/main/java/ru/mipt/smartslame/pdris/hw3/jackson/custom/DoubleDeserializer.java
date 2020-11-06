@@ -1,4 +1,4 @@
-package test;
+package ru.mipt.smartslame.pdris.hw3.jackson.custom;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;

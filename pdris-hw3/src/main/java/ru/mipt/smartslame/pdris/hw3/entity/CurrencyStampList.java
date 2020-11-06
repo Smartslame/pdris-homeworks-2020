@@ -1,4 +1,4 @@
-package test;
+package ru.mipt.smartslame.pdris.hw3.entity;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
@@ -9,17 +9,21 @@ import java.util.List;
 
 
 @JacksonXmlRootElement(localName = "ValCurs")
-public class CurrencyList {
+public class CurrencyStampList {
 
     @JacksonXmlProperty(localName = "Record")
     @JacksonXmlElementWrapper(useWrapping = false)
-    private List<Currency> currencies = new ArrayList<>();
+    private List<CurrencyStamp> currencies;
 
-    public List<Currency> getCurrencies() {
+    public CurrencyStampList() {
+        this.currencies = new ArrayList<>();
+    }
+
+    public List<CurrencyStamp> getCurrencies() {
         return currencies;
     }
 
-    public void setCurrencies(List<Currency> currencies) {
+    public void setCurrencies(List<CurrencyStamp> currencies) {
         this.currencies = currencies;
     }
 }

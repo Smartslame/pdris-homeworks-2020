@@ -1,11 +1,7 @@
-package test;
+package ru.mipt.smartslame.pdris.hw3;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-
-import java.util.List;
 
 @SpringBootApplication
 public class Main {
