@@ -2,28 +2,34 @@ package ru.mipt.smartslame.pdris.hw3.service;
 
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import ru.mipt.smartslame.pdris.hw3.entity.WeatherDayStats;
-import ru.mipt.smartslame.pdris.hw3.entity.WeatherStats;
+import ru.mipt.smartslame.pdris.hw3.model.WeatherStampList;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
+import java.util.Objects;
 
 public class WeatherService {
     private final RestTemplate restTemplate;
-    private final String apiKey = "e197d371f7594d3fb07142422202810";
-    private final String url = "http://api.weatherapi.com/v1/history.json";
-    private final String city = "Moscow";
-    public WeatherService(RestTemplate restTemplate) {
+    private final String apiKey;
+    private final String apiUrl;
+    private final String defaultCity;
+
+    public WeatherService(RestTemplate restTemplate, String apiKey, String apiUrl, String defaultCity) {
         this.restTemplate = restTemplate;
+        this.apiKey = apiKey;
+        this.apiUrl = apiUrl;
+        this.defaultCity = defaultCity;
     }
 
-    private String getRequestUri(int daysCount) {
+    private String getWeatherRequestUri(int daysCount, String city) {
+        if (Objects.isNull(city)) {
+            city = defaultCity;
+        }
         daysCount--;
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return UriComponentsBuilder
-                .fromHttpUrl(url)
+                .fromHttpUrl(apiUrl)
                 .queryParam("key", apiKey)
                 .queryParam("q", city)
                 .queryParam(
@@ -37,9 +43,12 @@ public class WeatherService {
                 .toUriString();
     }
 
-    public WeatherStats getWeather(int daysCount) {
-        return restTemplate.getForObject(getRequestUri(daysCount), WeatherStats.class);
+    public WeatherStampList getWeather(int daysCount, String city) {
+        return restTemplate.getForObject(getWeatherRequestUri(daysCount, city), WeatherStampList.class);
+    }
 
+    public WeatherStampList getWeather(int daysCount) {
+        return getWeather(daysCount, null);
     }
 
 
