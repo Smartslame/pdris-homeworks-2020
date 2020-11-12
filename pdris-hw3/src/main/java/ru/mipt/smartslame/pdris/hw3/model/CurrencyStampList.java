@@ -17,6 +17,14 @@ public class CurrencyStampList {
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<CurrencyStamp> currencyStamps;
 
+    public CurrencyStampList() {
+    }
+
+    public CurrencyStampList(String id, List<CurrencyStamp> currencyStamps) {
+        this.id = id;
+        this.currencyStamps = currencyStamps;
+    }
+
     @JsonProperty("dynamic")
     public List<CurrencyStamp> getCurrencyStamps() {
         return currencyStamps;

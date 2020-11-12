@@ -15,6 +15,14 @@ public class WeatherStampList {
     private String city;
     private List<WeatherStamp> weatherStamps;
 
+    public WeatherStampList() {
+    }
+
+    public WeatherStampList(String city, List<WeatherStamp> weatherStamps) {
+        this.city = city;
+        this.weatherStamps = weatherStamps;
+    }
+
     @JsonProperty("city")
     public String getCity() {
         return city;

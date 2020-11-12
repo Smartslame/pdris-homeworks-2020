@@ -2,11 +2,20 @@ package ru.mipt.smartslame.pdris.hw3.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "weather")
 public class WeatherStamp {
-    private String city;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    @Column(unique = true)
     private LocalDate date;
+
+    private String city;
     private double minTemp;
     private double maxTemp;
     private double avgTemp;

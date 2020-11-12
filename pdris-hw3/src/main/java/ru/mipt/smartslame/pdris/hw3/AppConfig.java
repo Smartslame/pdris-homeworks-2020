@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
+import ru.mipt.smartslame.pdris.hw3.repository.CurrencyRepository;
+import ru.mipt.smartslame.pdris.hw3.repository.WeatherRepository;
 import ru.mipt.smartslame.pdris.hw3.service.CurrencyService;
 import ru.mipt.smartslame.pdris.hw3.service.PredictionService;
 import ru.mipt.smartslame.pdris.hw3.service.WeatherService;
@@ -17,19 +19,21 @@ public class AppConfig {
 
     @Bean
     public CurrencyService currencyService(
+            CurrencyRepository currencyRepository,
             RestTemplate restTemplate,
             @Value("${currency.api.url}") String apiUrl,
             @Value("${currency.default.id}") String defaultCurrencyId) {
-        return new CurrencyService(restTemplate, apiUrl, defaultCurrencyId);
+        return new CurrencyService(currencyRepository, restTemplate, apiUrl, defaultCurrencyId);
     }
 
     @Bean
     public WeatherService weatherService(
+            WeatherRepository weatherRepository,
             RestTemplate restTemplate,
             @Value("${weather.api.key}") String apiKey,
             @Value("${weather.api.url}") String apiUrl,
             @Value("${weather.default.city}") String defaultCity) {
-        return new WeatherService(restTemplate, apiKey, apiUrl, defaultCity);
+        return new WeatherService(weatherRepository, restTemplate, apiKey, apiUrl, defaultCity);
     }
 
     @Bean
