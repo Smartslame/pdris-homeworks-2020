@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Audit</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>User</th>
+        <th>Auth result</th>
+        <th>Reason</th>
+        <th>Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${audit.empty}">
+        <td colspan="4"> No Audit Available</td>
+    </tr>
+
+    <div th:if="${audit != null and !audit.empty}">
+        <div th:each="instance : ${audit}">
+            <tr th:each="auditRecord : ${instance.value}">
+                <td><span th:text="${instance.key}">User</span></td>
+                <td><span th:text="${auditRecord.authResult}"> Auth result </span></td>
+                <td><span th:text="${auditRecord.authResultReason}"> Reason </span></td>
+                <td><span th:text="${auditRecord.date}"> Time </span></td>
+            </tr>
+        </div>
+    </div>
+
+    </tbody>
+</table>
+
+</body>
+</html>
