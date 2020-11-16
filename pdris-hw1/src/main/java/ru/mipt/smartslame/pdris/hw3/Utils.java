@@ -12,7 +12,6 @@ public class Utils {
         Map<String, String> users = new HashMap<>();
         users.put("admin", "admin");
         servletContext.setAttribute("users", users);
-
     }
 
     public static Map<String, String> getUsers(ServletContext servletContext) {
