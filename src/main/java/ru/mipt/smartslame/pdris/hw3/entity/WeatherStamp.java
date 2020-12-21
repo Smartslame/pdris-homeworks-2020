@@ -12,7 +12,6 @@ public class WeatherStamp {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(unique = true)
     private LocalDate date;
 
     private String city;

@@ -24,7 +24,6 @@ public class CurrencyStamp {
 
     @JacksonXmlProperty(localName = "Date", isAttribute = true)
     @JsonDeserialize(using = DateDeserializer.class)
-    @Column(unique = true)
     private LocalDate date;
 
     @JacksonXmlProperty(localName = "Value")
